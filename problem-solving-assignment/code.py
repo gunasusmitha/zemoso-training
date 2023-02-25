@@ -4,25 +4,20 @@ Alice wins if the sum of her selected integers is even; otherwise, Bob wins.
 Your task is to determine who will win the game, if both players play optimally.
 """
 seq=list(map(int,input("Enter sequence:").split()))
-alice=bob=0
-flag=1
-def logic(seq):
-    for i in seq:
-        if i%2==0:
-            seq.remove(i)
-            return i
-    else:
-        seq.remove(seq[0])
-        return i
-while seq:
-    if flag==1:
-        alice+=logic(seq)
-        flag=0
-    else:
-        bob+=logic(seq)
-        flag=1
-if alice%2==0:
-    print("Alice is winner")
+n=len(seq)
+odd_count = 0
+for i in seq:
+	if i % 2 == 1:
+		odd_count += 1
+rem_odd_count = odd_count % 4
+if rem_odd_count == 0 or rem_odd_count == 3:
+	print('Alice is winner')
+elif rem_odd_count == 2:
+	print('Bob is winner')
 else:
-    print("Bob is winner")
-    
+	if n % 2 == 0:
+		print('Alice is winner')
+	else:
+		print('Bob is winner')
+
+
