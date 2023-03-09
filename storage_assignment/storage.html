@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Storage Score Tracker</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			text-align: center;
+		}
+		.counts {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 100px;
+		}
+		.counts div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 0 20px;
+			padding: 10px;
+			background-color: pink;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(14, 13, 13, 0.5);
+		}
+		.counts div span {
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		#local-button:hover,#session-button:hover,#local-clear-button:hover{
+            background-color: grey;
+        }
+
+	</style>
+</head>
+<body>
+	<h1>Score Tracker</h1>
+	<div class="counts">
+		<div>
+			<span>Local Score</span>
+			<span id="local-score">0</span>
+			<button id="local-button">Increment</button>
+			<button id="local-clear-button">Clear</button>
+		</div>
+		<div>
+			<span>Session Score</span>
+			<span id="session-score">0</span>
+			<button id="session-button">Increment</button>
+		</div>
+	</div>
+    <script src="./storage.js"></script>
+</body>
+</html>
