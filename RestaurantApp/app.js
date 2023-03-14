@@ -124,6 +124,8 @@ function dragAndDrop() {
 dragAndDrop();
 
 function showModal(tableId) {
+  document.getElementById(`${tableId}`).style.backgroundColor = 'gray';
+
   const orderDetails = JSON.parse(sessionStorage.getItem(tableId)) || {};
 
   // Get the modal element and its content element
@@ -135,7 +137,7 @@ function showModal(tableId) {
   modalContent.innerHTML = '';
 
   // Add the table orders to the modal content
-  const heading = document.createElement('h2');
+  const heading = document.createElement('h3');
   heading.innerText = `${tableId} Orders`;
   modalContent.appendChild(heading);
 
@@ -150,6 +152,10 @@ function showModal(tableId) {
   const priceHeader = document.createElement('th');
   priceHeader.innerText = 'Price';
   tableHeader.appendChild(priceHeader);
+  table.appendChild(tableHeader);
+  const actionHeader = document.createElement('th');
+  actionHeader.innerText = 'Action';
+  tableHeader.appendChild(actionHeader);
   table.appendChild(tableHeader);
 
   var totalAmount = orderDetails.totalPrice || 0;
@@ -187,8 +193,19 @@ function showModal(tableId) {
       priceCell.innerText = `Rs. ${order.price * order.quantity}`;
       row.appendChild(priceCell);
       table.appendChild(row);
+      const deleteCell=document.createElement('td');
+      deleteCell.innerHTML='<i class="fa fa-trash" aria-hidden="true"></i>';
+      row.appendChild(deleteCell);
+      table.appendChild(row);
       // totalAmount += order.price * order.quantity;
-      
+      deleteCell.addEventListener('click',()=>{
+        //alert("deleting row");
+        table.removeChild(row);
+        order.quantity=0;
+        //order.removeItem(itemName);
+        updateTotal();
+        sessionStorage.setItem(tableId, JSON.stringify(orderDetails));
+      })
     } 
   }
   const tableFooter = document.createElement('tr');
@@ -203,7 +220,11 @@ function showModal(tableId) {
   closeButton.classList.add('close-button');
   closeButton.innerHTML = '&times;';
   closeButton.addEventListener('click', closeModal);
+  
+  closeButton.style.top='3px';
+  closeButton.style.right='3px';
   modalContent.appendChild(closeButton);
+
 
   const billButton = document.createElement('button');
   billButton.innerText = 'Bill';
@@ -239,10 +260,12 @@ function showModal(tableId) {
 }
 
 function closeModal() {
+
   var current= document.getElementById("myModal");
   current.style.display = "none";
   var value=current.getAttribute("tableId");
   
+  document.getElementById(`${value}`).style.backgroundColor = 'white';
   
   const orderDetails = JSON.parse(sessionStorage.getItem(value));
   // console.log(orderDetails);
