@@ -137,9 +137,18 @@ function showModal(tableId) {
   modalContent.innerHTML = '';
 
   // Add the table orders to the modal content
+  const headingdiv=document.createElement('div');
+  headingdiv.id='headingdiv';
   const heading = document.createElement('h3');
+  heading.style.textAlign= 'center';
+  heading.style.width= '100%';
   heading.innerText = `${tableId} Orders`;
-  modalContent.appendChild(heading);
+
+  headingdiv.style.display='flex';
+  headingdiv.style.flexDirection='row';
+  headingdiv.style.justifyContent= 'space-between';
+  headingdiv.appendChild(heading);
+  modalContent.appendChild(headingdiv);
 
   const table = document.createElement('table');
   const tableHeader = document.createElement('tr');
@@ -220,13 +229,16 @@ function showModal(tableId) {
   closeButton.classList.add('close-button');
   closeButton.innerHTML = '&times;';
   closeButton.addEventListener('click', closeModal);
-  
-  closeButton.style.top='3px';
-  closeButton.style.right='3px';
-  modalContent.appendChild(closeButton);
+  closeButton.style.fontWeight='900';
+  closeButton.style.borderRadius='30%';
+  headingdiv.appendChild(closeButton);
+
 
 
   const billButton = document.createElement('button');
+  billButton.style.width='15%';
+  billButton.style.alignSelf='center';
+  billButton.style.borderRadius='10%';
   billButton.innerText = 'Bill';
   billButton.addEventListener('click', () => {
     // Generate the bill here
