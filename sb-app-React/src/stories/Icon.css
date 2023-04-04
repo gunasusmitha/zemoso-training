@@ -1,0 +1,25 @@
+.icon {
+    display: flex;
+    gap: 1rem;
+}
+
+.small-icon {
+    font-size: 1em;
+}
+
+.medium-icon {
+    font-size: 2em;
+}
+
+.large-icon {
+    font-size: 3em;
+}
+
+.light-icon {
+    color: gray;
+}
+
+.dark-icon {
+    color: blue;
+}
+
